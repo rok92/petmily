@@ -1,0 +1,422 @@
+.cart {
+  display: grid;
+  grid-template: 
+  "box-sort cart3" 1fr / max-content 1fr;
+}
+
+.cart_title{
+    font-family: 'Nanum Gothic';
+    margin-left:43px;
+    margin-top:60px;
+    font-size: 30px;
+}
+
+.cart_box_sort{
+  display:flex;
+  flex-direction: column;
+  position:relative;
+}
+
+.cart_box{
+    margin-left:43px;
+    margin-top: 40px;
+    border: 1px solid #ee82ee;
+    height: max-content;
+    background-color: #fff;
+    border-radius: 10px;
+    
+}
+
+.cart_box hr {
+  margin: 0 15px;
+}
+
+#cart_box__controller {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.item {
+  display: flex;
+  padding: 30px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.item input[type=checkbox] {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+}
+
+.item .item__delete {
+  position: absolute;
+  border: none;
+  background: none;
+  top: 20px;
+  right: 15px;
+  font-size: 20px;
+}
+.item .item__delete i {
+  color: #c4c4c4;
+}
+
+.item img {
+  margin: 15px 30px;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-info p:nth-of-type(1) {
+  padding-bottom: 5px;
+  font-weight: 800;
+  font-size: 20px;
+  margin-top: 14px;
+}
+
+.item-info p:nth-of-type(3) {
+  padding: 15px 0;
+  font-weight: 200;
+}
+.item-info__name{
+	margin-top: 6px;
+	font-size: 16px;;	
+}
+
+.item-info button {
+  font-family: 'Nanum Gothic';
+  font-weight: 600;
+  border:none;
+  border-radius: 10px;
+  color:#fff;
+  background-color: #ee88ee;
+  width: fit-content;
+  padding: 10px 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.item__price {
+  display: flex;
+  align-items: center;
+  right: 10px;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.cart_box_recommended{
+  margin-left:43px;
+  margin-top: 300px;
+  padding: 15px;
+  border: 1px solid #ee82ee;
+  width: 1000px;
+  height: max-content;
+  background-color: #fff;
+  align-items: left;
+  border-radius: 10px;
+  
+}
+
+.recommended-item-ct {
+  display: flex;
+  justify-content: space-evenly;
+  overflow: scroll;
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+.recommended-item-ct::-webkit-scrollbar {
+  display: none;
+}
+
+.recommended-item {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.recommended-item img {
+  width: 200px;
+  height: 150px;
+  margin: 40px 10px 20px 10px;
+  border-radius: 10px;
+}
+
+.recommended-item button {
+  font-family: 'Nanum Gothic';
+  font-weight: 600;
+  background-color: #ee88ee;
+  width: max-content;
+  padding: 15px;
+  margin-top: 5px;
+  margin-left: 52px;
+  border:none;
+  border-radius: 7px;
+  color:#fff;
+  cursor: pointer;
+}
+
+
+.cart_box_final_pay{
+  position: sticky; 
+  position: -webkit-sticky;
+  top: 105px;
+  display: flex;
+  justify-content: center;
+  margin-left:43px;
+  margin-top: 40px;
+  padding: 15px;
+  border: 1px solid #ee82ee;
+  width: 450px;
+  height: fit-content;
+  min-height: 278px;
+  background-color: #fff;
+  border-radius: 10px;
+ 
+}
+
+#agree1,
+#agree2,
+#agree3,
+#agree_all
+{
+	 cursor:pointer;
+}
+
+.final_pay_txt{
+  width: 400px;
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+  font-size: 20px;
+  font-weight: 600;
+  align-items: center;
+}
+
+.final_pay_btn {
+  font-family: 'Nanum Gothic';
+  font-weight: 600;
+  font-size:20px;
+  bottom: 20px;
+  width: 400px;
+  padding: 20px;
+  color:#fff;
+  background-color:#ee88ee;
+  border:none;
+  border-radius: 10px;
+  cursor: pointer;
+  
+}
+
+.cart_box__title {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.delete_btn{
+background-color: #ee82ee;
+border:none;
+border-radius: 5px;
+font-family: 'Nanum Gothic';
+color:#fff;
+font-weight: 600;
+cursor: pointer;
+width:60px;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal hr {
+  margin: 5px 0;
+}
+
+.terms_of_agreement {
+  position: relative;
+  margin-top: 10px;
+}
+
+.terms_of_agreement__details {
+  display: grid;
+  grid-template: 
+  "detail1 ." max-content
+  "detail2 detail3" max-content / 1fr 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 5px;
+ 
+}
+
+.terms_of_agreement__detail {
+  display: grid;
+  grid-template:
+  "title input label" max-content / 1fr max-content max-content;
+  
+}
+
+.terms_of_agreement__detail span {
+  width: fit-content;
+}
+
+.terms_of_agreement__see_more {
+  background-color: #BB001F;
+  height: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.terms_of_agreement__see_more button {
+  height: max-content;
+  padding: 2px 20px;
+  background-color: #BB001F;
+  color: white;
+  border: none;
+  border-radius: 10px;
+ 
+}
+
+.terms_of_agreement__see_more button i {
+  color: white;
+  
+}
+
+.payments {
+  display: grid;
+  grid-template:
+  "payments__pays" max-content
+  "payments__cards" max-content
+  "payments__else" max-content / 1fr;
+}
+
+.payments button {
+  background-color: white;
+  border: 1px solid gray;
+  padding: 7px 0;
+  cursor:pointer;
+}
+
+.payments__pays {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.payments__pays button {
+  display: grid;
+  grid-template:
+  "logo text" 1fr / max-content 1fr;
+}
+
+.payments__pays button img {
+  width: 50px;
+  margin-left: 30px;
+}
+
+.payments__cards {
+  display: grid;
+  grid-template:
+  "hyundae hyundae samsung samsung" 1fr
+  "kb bc shinhan nh" 1fr
+  "hana citi lotte union" 1fr
+  "else . . ." 1fr / 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.card__hyundae {
+  grid-area: hyundae;
+}
+
+.card__samsung {
+  grid-area: samsung;
+}
+
+.payments__else {
+  margin-top: 50px;
+  display: grid;
+  grid-template:
+  "payco Lpay else ." 1fr / 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+.total_charge{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.total_charge > div{
+	font-weight: 600;
+	font-family: 'Nanum Gothic';
+	font-size:25px;	
+}
+
+.payments_confirm{
+ color:#ee88ee;
+}
+
+.insurance_price{
+	margin-top: 50px;
+	cursor: pointer;
+}
+.insurance_price i{
+	font-size: 18px;
+	color: #778887;
+	margin-right: 8px;
+}
+.insurance_price span{
+	font-size: 18px;
+	color: #778887;
+	margin-right: 8px;
+}
+.info_insurance{
+	display: none;
+	padding: 10px 0 0 25px;
+}
+.info_insurance p{
+	margin-bottom: 8px;
+	color: #778887;
+}

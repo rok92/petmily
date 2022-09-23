@@ -1,0 +1,292 @@
+
+.pageTitle {
+  text-align: center;
+  
+  margin: 50px auto 30px auto;	
+}
+
+.pageTitle > div {
+  background-color: #fff;
+  border-radius: 20px;
+  
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  
+  display: inline-block;
+  
+  line-height: 60px;
+}
+
+.pageTitle > div > span {
+  margin: 0 22px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.signup_box{
+  margin: 50px auto;
+  
+  border: 1px solid #ee82ee;
+  
+  width: 600px;
+  
+  background-color: #fff;
+  
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+/* 항목에 폰트 굵게 표시 */
+.title { 
+	font-size: 16px; 
+	font-weight:bold;
+}
+
+/* 모든 항목 위아래 간격 설정 */
+.signup_id, .signup_pwd,
+.check_pwd, .signup_name,
+.signup_email{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+/* 박스안 고객정보 박스 */
+.custom_info{
+  width: 356px;
+  
+  margin: 50px auto;
+}
+
+/* 모든 p태그 폰트크기 결정 */
+.custom_info > p{
+  font-size: 16px;
+}
+
+/* 아이디, 아이디 중복확인 */
+.custom_info .text_signup_id{
+  width: 270px;
+  height: 40px;
+  border: #ee82ee solid 1px;
+  border-radius: 2px;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.signup_id .btn_idcheck{
+  width: 80px;
+  height: 40px;
+  background-color: #ee82ee;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 비밀번호, 비밀번호 체크 */
+.custom_info .text_signup_pwd{
+  width: 354px;
+  height: 40px;
+  border: #ee82ee solid 1px;
+  border-radius: 2px;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.custom_info .text_check_pwd{
+  width: 354px;
+  height: 40px;
+  border: #ee82ee solid 1px;
+  border-radius: 2px;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* 이름 입력 상자 */
+.custom_info .text_signup_name{
+  width: 354px;
+  height: 40px;
+  border: #ee82ee solid 1px;
+  border-radius: 2px;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* 이메일, 이메일 중복 확인  */
+.custom_info .text_signup_email{
+  width: 270px;
+  height: 40px;
+  border: #ee82ee solid 1px;
+  border-radius: 2px;
+  padding: 8px;
+  outline: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.signup_email .btn_emailcheck{
+  width: 80px;
+  height: 40px;
+  background-color: #ee82ee;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 색상 변경 */
+.agree_rule input {
+  accent-color: #f5f5f5;
+}
+
+/* 이용약관 전체 박스 */
+.agree_rule{
+  width: 356px;
+  height: 200px;
+}
+
+/* 이용약관 전체 체크박스 */
+.agree_all{
+  display: flex;
+  justify-content: space-between;
+  width: 356px;
+  border-bottom: rgb(200, 198, 198) 1px solid;
+}
+.agree_all_check{
+  width: 20px;
+  height: 20px;
+  margin: 0 0 15px 0;
+}
+.agree_all > p{
+  margin-right: 226px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 이용약관 서브1 체크 */
+.agree_sub1{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.agree_sub1 .agree_subcheck{
+  width: 20px;
+  height: 20px;
+}
+
+.agree_sub1 > p{
+  margin-right: 78px;
+  font-weight: bold;
+}
+
+/* 이용약관 서브2 체크 */
+.agree_sub2{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.agree_sub2 .agree_subcheck{
+  width: 20px;
+  height: 20px;
+}
+
+.agree_sub2 > p{
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+/* 이용약관 서브3 체크 */
+.agree_sub3{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.agree_sub3 .agree_subcheck{
+  width: 20px;
+  height: 20px;
+}
+
+.agree_sub3 > p{
+  margin-right: 6px;
+}
+
+/* 이용약관 서브4 체크 */
+.agree_sub4{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.agree_sub4 .agree_subcheck{
+  width: 20px;
+  height: 20px;
+}
+
+.agree_sub4 > p{
+  margin-right: 11px;
+  font-weight: bold;
+}
+
+/* 상세보기 레이아웃 */
+.subDetail {
+  cursor: pointer;	
+}
+
+/* 가입하기 버튼 */
+.btn_signup_box{
+  width: 600px;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.btn_signup_done{
+  width: 120px;
+  height: 50px;
+
+  font-size: 16px;
+  font-weight: 600;
+  
+  background-color: #ee82ee;
+  color: #fff;
+  
+  border: none;
+  border-radius: 8px;
+  
+  cursor: pointer;
+}
+
+.btn_cancel_done{
+  width: 120px;
+  height: 50px;
+  
+  margin-right: 30px;
+
+  font-size: 16px;
+  font-weight: 600;
+  
+  background-color: white;
+  color: black;
+  
+  border: none;
+  border-radius: 8px;
+  
+  cursor: pointer;
+}
+
+.btn_signup_box > button:hover{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: 0.9s linear;
+}

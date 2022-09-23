@@ -1,0 +1,1368 @@
+@charset "UTF-8";
+.stay_title{
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 80px;
+}
+
+.stay_sub_info{
+  display: flex;
+  margin-top: 20px;
+}
+
+.stay_sub_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 120px;
+}
+
+.stay_sub_info .stay_sub_box img{
+  width: 20px;
+  height: 20px;
+}
+
+.stay_pick span, .stay_sub_box div.review_move{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.stay_sub_box div.review_move{
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 1px solid #222;
+}
+
+.stay_sub_info .stay_pick{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 85px;
+}
+
+.stay_sub_info .stay_pick img{
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.stay_sub_info .stay_pick span{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stay_img_container{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 1580px;
+  margin-top: 40px;
+}
+
+.stay_img_container > .stay_img_box1{
+	margin-right: 5px;
+}
+
+.stay_img_container > .stay_img_box1 img{
+  height: 500px;
+  width: 750px;
+}
+
+.stay_img_container > .stay_img_box2{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  height: 500px;
+  width: 830px;
+  overflow: hidden;
+}
+
+.stay_img_container > .stay_img_box2 img{
+  height: 250px;
+  width: 410px;
+}
+
+.stay_img_container > .stay_img_box2 div{
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  height: 250px;
+  width: 410px;
+  line-height: 250px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  color: #ee82ee;
+  background-color: #222;
+  opacity: 0.2;
+}
+
+/* 숙소 정보 article */
+
+.stay_info_area{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.stay_info_area .info_content_area{
+  width: 850px;
+}
+
+.info_content_box1 .content_title{
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.simple_info_box{
+  margin-top: 12px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ddd;
+}
+
+.simple_info_box > span{
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.info_content_box2{
+  /* display: flex; */
+  /* align-items: center; */
+  padding: 15px;
+  text-align: center;
+  justify-content: space-around;
+  height: 135px;
+  border-bottom: 1px solid #ddd;
+}
+
+.location_box img, .contact_box img{
+  width: 20px;
+  height: 20px;
+}
+
+.location_box, .contact_box{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  font-size: 20px;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+
+.location_box .copy, .contact_box .copy{
+  display: none;
+  position:relative;
+  top: -40px;
+  right: 20px;
+  width: 65px;
+  padding: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #efbdef;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.copy:after {
+  content : '';
+  position: absolute;
+  background-color:#efbdef;
+  width : 10px;
+  height: 10px;
+  transform: rotate(45deg) translateX(-50%);
+  bottom: -5px;
+  left: 50%; 
+}
+
+.location_box i, .contact_box i {
+  position: relative;
+  left: 5px;	
+}
+
+.location_box > i:hover, .contact_box > i:hover {
+  cursor: pointer;
+}
+
+.location_box > i:hover + p.copy, .contact_box > i:hover + p.copy{
+  display: block;
+}
+
+span.spanWidth {
+  text-align: left;
+  padding-left: 15px;
+  width: 100px;	
+}
+
+/* 복사 시 팝업 박스 */
+#copy_box {
+    display: none;
+    width: 430px;
+    position: fixed;
+    top: 250px;
+    left: 38.8%;
+    padding: 14px 16px 16px 14px;
+    background-color: #efbdef;
+    box-shadow: #aaa 0px 4px 8px 0px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+/* 숙박타입 */
+.info_content_box3{
+  border-bottom: 1px solid #ddd;
+  padding: 30px 0 55px 0;
+}
+
+.info_content_box3 > div:first-child{
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 45px;
+}
+
+.info_content_box3 img{
+  width: 340px;
+  height: 240px;
+  border-radius: 10px;
+}
+
+.room_box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px;
+  height: 180px;
+}
+
+.room_box > div{
+  font-size: 22px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.info_content_box3 > div:nth-child(2), .info_content_box3 > div:nth-child(3){
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.info_content_box3 div:nth-child(3){
+  margin-top: 30px;
+}
+
+.info_content_box3 div:nth-child(2) .room_box span, .info_content_box3 div:nth-child(3) .room_box span{
+  display: inline-block;
+  width: 150px;
+  height: 47px;
+  line-height: 47px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.info_content_box3 div:nth-child(3) .room_box span{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.room_btn{
+  width: 115px;
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ee82ee;
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* 숙소 편의 시설 */
+.info_content_box4{
+  border-bottom: 1px solid #ddd;
+}
+
+.info_content_box4 > div:first-child{
+  margin-top: 50px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.cs_box{
+  display: flex;
+  margin-top: 20px;
+}
+
+.cs_box > div{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 22px;
+  font-weight: 500;
+  width: 50%;
+  height: 250px;
+}
+
+.additional_cs > div{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 22px;
+  font-weight: 500;
+  width: 50%;
+}
+
+.cs_box1 > div, .cs_box2 > div{
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.cs_box img, .additional_cs img{
+  width: 25px;
+  height: 25px;
+  margin-right: 25px;
+}
+
+.additional_click{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+.additional_click > span{
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid #222;
+}
+
+.additional_click i{
+  font-size: 23px;
+  margin-left: 10px;
+}
+
+.additional_cs{
+  display: none;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.sticky_area{
+  position: sticky;
+  top: 105px;
+  width: 450px;
+  height: max-content;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding: 30px;
+}
+
+.charge_area{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.charge_area div:nth-child(1) span{
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.charge_area div:nth-child(1) span:nth-child(2){
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.charge_area div:nth-child(2){
+  display: flex;
+  justify-content: space-between;
+  width: 125px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.charge_area div:nth-child(2) img{
+  width: 20px;
+  height: 20px;
+}
+
+.charge_area div:nth-child(2) > div{
+  border-bottom: 1px solid #222;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.check_date{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.checkin,.checkout{
+  width: 192px;
+  height: 70px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.checkin{
+  border-right: 1px solid #ddd;
+}
+
+.checkin div:nth-child(2), .checkout div:nth-child(2), .total_count div:nth-child(2){
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+
+/* 인원선택 팝업 */
+.dis_block{
+  display: block!important;
+}
+
+.info_content_count, .stay_date{
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.total_count{
+  position: relative;
+  width: 100%;
+  height: 70px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.person_count_option{
+  display: none;
+  width: 385px;
+  height: 300px;
+  position: absolute;
+  top: 73px;
+  right: 0;
+  padding: 50px 55px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  z-index: 3;
+}
+
+/* 팝업 인원박스 */
+.person_count_option .tlt_popup_person{
+  font-size: 22px;
+  font-weight: 600;
+}
+.person_count_option .div_person_count{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.person_count_option .div_person_count .box_txt_person{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.box_txt_person .txt_person_main{
+  font-size: 20px;
+  font-weight: 400;
+}
+.box_txt_person .txt_person_sub{
+  margin: 5px 0 0 1px;
+  font-size: 16px;
+  color: rgb(183, 171, 171);
+}
+.div_person_count .box_plus_minus{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.box_plus_minus .btn_popup_count{
+  width: 34px;
+  height: 34px;
+  border: 3px solid #ddd;
+  border-radius: 50px;
+  color: #ddd;
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+}
+.box_plus_minus .btn_count_active{
+  border: 2px solid #ee82ee;
+  color: #ee82ee;
+  cursor: pointer;
+}
+.box_plus_minus .popup_count_person{
+  display: inline-block;
+  width: 43px;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* 요금 상세 */
+.charge_detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 10px 20px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.charge_detail > div{
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 500;
+  
+  padding: 10px;
+}
+
+.total_charge{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.book_btn{
+  width: 100%;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 25px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ee82ee;
+  cursor: pointer;
+}
+
+/* 지도 */
+.info_content_box5{
+  height: 450px;
+  margin: 45px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.info_content_box5 .map{
+  width: 100%;
+  height: 400px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* 알아두어야 할 사항 */
+.info_content_box6{
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #ddd;;
+}
+
+.rule_box > div{
+  margin-bottom: 20px;
+}
+
+.rule_title{
+  font-size: 25px;
+  font-weight: 600;
+  margin: 45px 0 30px;
+}
+
+.rule_container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.rule_container > div.rule_box{
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  height: 170px;
+}
+
+.rule_container > div.rule_box, .rule_container > div > i{
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.rule_container .rule_box > div > i{
+  margin-right: 10px;
+}
+
+.rule_sub_title{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.rule_sub_long{
+  line-height: 26px;
+}
+
+/* 리뷰 */
+.info_content_box7{
+  height: 700px;
+}
+
+.info_content_box7 > div.review_title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25px;
+  font-weight: 600;
+  width: 180px;
+}
+
+.info_content_box7 > div.review_title > img{
+  width: 20px;
+  height: 20px;
+}
+
+.review_title > div{
+  border-bottom: 1px solid #222;
+}
+
+.review_content_container{
+  display: flex;
+}
+
+.review_content_box{
+  display: flex;	
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 40px 20px 10px;
+  overflow: hidden;
+}
+
+.review_content_box > div.review_user_content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 390px;
+  height: 200px;
+  padding: 15px;
+}
+
+.review_content_box .user_img_box{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.review_content_box .user_img_box img, .modal_user_info img{
+  width: 35px;
+  height: 35px;
+  margin-top: 1px;
+}
+
+.review_info{
+  width: 310px;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.review_info .nickname{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.review_info .review_date{
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.review_content{
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 25px;
+  height: 130px;
+  padding: 20px 10px 10px;
+}
+
+.info_content_box7 > button{
+  float: right;
+  width: 230px;
+  height: 65px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2.5px solid #222;
+  cursor: pointer;
+  margin: 10px 20px;
+}
+
+/* 리뷰 모달 */
+.black_bg{
+	display: none;
+	position: absolute;
+    top: 0;
+	left: 0;
+	content: " ";
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0,0, 0.5);
+	z-index: 5;
+}
+
+.review_container{
+	display: none;
+	flex-wrap: wrap;
+    justify-content: space-between;
+    position:absolute;
+    top: calc(50% - 330px);
+    left:  calc(50% - 350px);
+	width: 700px;
+	height: 700px;
+	border-radius: 10px;
+	background-color: #fff;
+	padding: 50px;
+	z-index: 10;
+}
+
+.modal_review_title{
+	display: flex;
+	align-items: center;
+	width: 90%;
+	height: 60px;
+	font-size: 25px;
+	font-weight: 600;
+}
+
+.modal_review_title img{
+	width: 20px;
+	height: 20px;
+	margin-right: 8px;
+}
+
+.modal_review_title span{
+	margin-right: 8px;
+}
+
+.review_close{
+	height: 60px;
+}
+
+.review_close > i {
+	font-size: 35px;
+	line-height: 60px;
+	cursor: pointer
+}
+
+.review_box{
+	height: 500px;
+	width: 100%;
+	padding: 10px;
+	overflow: auto;
+}
+
+.modal_user_review{
+	height: 160px;
+}
+
+.modal_user_info{
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.modal_user_info img{
+	margin-right: 10px;
+	border-radius: 50%;
+}
+
+.modal_nickname{
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+.modal_review_date{
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.modal_content{
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 24px;
+	padding: 10px;
+}
+	
+/* daterangepicker */
+
+.daterangepicker {
+  position: absolute;
+  color: inherit;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  width: 278px;
+  max-width: none;
+  padding: 0;
+  top: 100px;
+  left: 20px;
+  z-index: 3001;
+  display: none;
+  font-family: arial;
+  font-size: 15px;
+  line-height: 1em;
+  margin-top: 2px;
+  margin-right: 193px;
+  box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+  
+}
+
+.daterangepicker:before, .daterangepicker:after {
+  position: absolute;
+  display: inline-block;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
+.daterangepicker:before {
+  top: -7px;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+}
+
+.daterangepicker:after {
+  top: -6px;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #fff;
+  border-left: 6px solid transparent;
+}
+
+.daterangepicker.opensleft:before {
+  right: 9px;
+}
+
+.daterangepicker.opensleft:after {
+  right: 10px;
+}
+
+.daterangepicker.openscenter:before {
+  left: 0;
+  right: 0;
+  width: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.daterangepicker.openscenter:after {
+  left: 0;
+  right: 0;
+  width: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.daterangepicker.opensright:before {
+  left: 9px;
+  display: none;
+}
+
+.daterangepicker.opensright:after {
+  left: 10px;
+  display: none;
+}
+
+.daterangepicker.drop-up {
+  margin-top: -7px;
+}
+
+.daterangepicker.drop-up:before {
+  top: initial;
+  bottom: -7px;
+  border-bottom: initial;
+  border-top: 7px solid #ccc;
+}
+
+.daterangepicker.drop-up:after {
+  top: initial;
+  bottom: -6px;
+  border-bottom: initial;
+  border-top: 6px solid #fff;
+}
+
+.daterangepicker.single .daterangepicker .ranges, .daterangepicker.single .drp-calendar {
+  float: none;
+}
+
+.daterangepicker.single .drp-selected {
+  display: none;
+}
+
+.daterangepicker.show-calendar .drp-calendar {
+  display: block;
+}
+
+.daterangepicker.show-calendar .drp-buttons {
+  display: block;
+}
+
+.daterangepicker.auto-apply .drp-buttons {
+  display: none;
+}
+
+.daterangepicker .drp-calendar {
+  display: none;
+  max-width: 450px;
+  height: 480px;
+}
+
+.daterangepicker .drp-calendar.left {
+  padding: 8px 0 8px 8px;
+  width: 432.5px;
+}
+
+.daterangepicker .drp-calendar.right {
+  padding: 8px;
+  width: 432.5px;
+}
+
+.daterangepicker .drp-calendar.single .calendar-table {
+  border: none;
+}
+
+.daterangepicker .calendar-table .next span, .daterangepicker .calendar-table .prev span {
+  color: #fff;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  border-radius: 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.daterangepicker .calendar-table .next span {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.daterangepicker .calendar-table .prev span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  min-width: 32px;
+  width: 40px;
+  height: 57px;
+  line-height: 24px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.daterangepicker .calendar-table {
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.daterangepicker .calendar-table table {
+  width: 100%;
+  margin: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.daterangepicker td.available:hover, .daterangepicker th.available:hover {
+  background-color: #eee;
+  border-color: transparent;
+  color: inherit;
+}
+
+.daterangepicker td.week, .daterangepicker th.week {
+  font-size: 80%;
+  color: #ccc;
+}
+
+.daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+  background-color: #fff;
+  border-color: transparent;
+  color: #999;
+}
+
+.daterangepicker td.in-range {
+  /* background-color: #f8ebf8; */
+  background-color: #eee;
+  border-color: transparent;
+  color: #000;
+  border-radius: 0;
+}
+
+.daterangepicker td.start-date {
+  border-radius: 50%;
+}
+
+.daterangepicker td.end-date {
+  border-radius: 50%;
+}
+
+.daterangepicker td.start-date.end-date {
+  border-radius: 50%;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #ee82ee;
+  border-color: transparent;
+  color: #fff;
+}
+
+.daterangepicker th.month {
+  width: auto;
+}
+
+.daterangepicker td.disabled, .daterangepicker option.disabled {
+  color: #999;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.daterangepicker select.monthselect, .daterangepicker select.yearselect {
+  font-size: 12px;
+  padding: 1px;
+  height: auto;
+  margin: 0;
+  cursor: default;
+}
+
+.daterangepicker select.monthselect {
+  margin-right: 2%;
+  width: 56%;
+}
+
+.daterangepicker select.yearselect {
+  width: 40%;
+}
+
+.daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.secondselect, .daterangepicker select.ampmselect {
+  width: 50px;
+  margin: 0 auto;
+  background: #eee;
+  border: 1px solid #eee;
+  padding: 2px;
+  outline: 0;
+  font-size: 12px;
+}
+
+.daterangepicker .calendar-time {
+  text-align: center;
+  margin: 4px auto 0 auto;
+  line-height: 30px;
+  position: relative;
+}
+
+.daterangepicker .calendar-time select.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.daterangepicker .drp-buttons {
+  clear: both;
+  text-align: right;
+  padding: 8px;
+  border-top: 1px solid #ddd;
+  display: none;
+  line-height: 12px;
+  vertical-align: middle;
+}
+
+.daterangepicker .drp-selected {
+  display: inline-block;
+  font-size: 12px;
+  padding-right: 8px;
+}
+
+.daterangepicker .drp-buttons .btn {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+}
+
+.daterangepicker.show-ranges.single.rtl .drp-calendar.left {
+  border-right: 1px solid #ddd;
+}
+
+.daterangepicker.show-ranges.single.ltr .drp-calendar.left {
+  border-left: 1px solid #ddd;
+}
+
+.daterangepicker.show-ranges.rtl .drp-calendar.right {
+  border-right: 1px solid #ddd;
+}
+
+.daterangepicker.show-ranges.ltr .drp-calendar.left {
+  border-left: 1px solid #ddd;
+}
+
+.daterangepicker .ranges {
+  float: none;
+  text-align: left;
+  margin: 0;
+}
+
+.daterangepicker.show-calendar .ranges {
+  margin-top: 8px;
+}
+
+.daterangepicker .ranges ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+.daterangepicker .ranges li {
+  font-size: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.daterangepicker .ranges li:hover {
+  background-color: #eee;
+}
+
+.daterangepicker .ranges li.active {
+  background-color: #08c;
+  color: #fff;
+}
+
+/*  Larger Screen Styling */
+@media (min-width: 564px) {
+  .daterangepicker {
+    width: auto;
+  }
+
+  .daterangepicker .ranges ul {
+    width: 140px;
+  }
+
+  .daterangepicker.single .ranges ul {
+    width: 100%;
+  }
+
+  .daterangepicker.single .drp-calendar.left {
+    clear: none;
+  }
+
+  .daterangepicker.single .ranges, .daterangepicker.single .drp-calendar {
+    float: left;
+  }
+
+  .daterangepicker {
+    direction: ltr;
+    text-align: left;
+  }
+
+  .daterangepicker .drp-calendar.left {
+    clear: left;
+    margin-right: 0;
+  }
+
+  .daterangepicker .drp-calendar.left .calendar-table {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .daterangepicker .drp-calendar.right {
+    margin-left: 0;
+  }
+
+  .daterangepicker .drp-calendar.right .calendar-table {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .daterangepicker .drp-calendar.left .calendar-table {
+    padding-right: 8px;
+  }
+
+  .daterangepicker .ranges, .daterangepicker .drp-calendar {
+    float: left;
+  }
+}
+
+@media (min-width: 730px) {
+  .daterangepicker .ranges {
+    width: auto;
+  }
+
+  .daterangepicker .ranges {
+    float: left;
+  }
+
+  .daterangepicker.rtl .ranges {
+    float: right;
+  }
+
+  .daterangepicker .drp-calendar.left {
+    clear: none !important;
+  }
+}
+
+/* 할인 박스 레이아웃 */
+
+/* 대상 버튼 레이아웃 */
+.dicntClick {
+  font-size: 18px;
+  font-weight: bold;
+  
+  padding: 3px 6px;
+  
+  background: #ee82ee;
+  color: white;
+  
+  cursor: pointer;
+  
+  border-radius: 5px;
+  border: none;	
+}
+
+.dicntClick:active {
+  background: white;
+  color: black;	
+}
+
+/* 드롭다운 박스 레이아웃 */
+form.dicnt-dropBox {
+  display: none;	
+  height: max-content;
+  
+  border: 1px solid #ddd;
+  padding: 10px;
+  
+  font-size: 18px;	
+}
+
+div.uploadImg-box {
+  margin-top: 10px;
+  
+  height: 221px;
+  
+  background-color: white;
+  
+  text-align: center;
+  
+  position: relative;
+}
+
+.uploadImg-box > img {
+  width: 100%;
+  height: 100%;
+  
+  margin: none;	
+}
+
+i.add_img_file {
+  font-size: 80px;
+
+  margin-top: 18%;
+  color: #ee82ee;
+	
+  position: absolute;
+  left: 140px;
+  	
+  cursor: pointer;
+}
+
+div.uploadImg-box > div {
+  margin-top: 3%;
+  
+  position: absolute;
+  bottom: 50px;
+  left: 82px;	
+}
+
+/* 업로드 버튼 레이아웃 */
+.btnUpload_box {
+  text-align: right;	
+}
+
+.btnUpload_box > button {
+  margin-left: 10px;
+  padding: 3px 6px;	
+	
+  font-size: 16px;
+  font-weight: bold;
+  
+  visibility: hidden;	
+}
+
+/* 적용 버튼 */
+.btn_signup_box {
+  margin: 0 auto;
+  float: right;
+}
+
+.btn_signup_done {
+  display: none;
+  	
+  margin: 10px 0px;	
+  
+  width: 60px;
+  height: 30px;
+
+  font-size: 16px;
+  font-weight: 600;
+  
+  background-color: #ee82ee;
+  color: #fff;
+  
+  border: none;
+  border-radius: 5px;
+  
+  cursor: pointer;
+}
+
+.btn_signup_done:active {
+  background: white;
+  color: black;	
+}
+
+/* 적용 후 결과 */
+div.disCount_total {
+  display: none;	
+}
+
+
+

@@ -1,0 +1,632 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nanum Gothic';
+  text-decoration: none;
+  color: #222;
+}
+
+body{
+  background-color: #f5f5f5;
+}
+
+section.wrap{
+  width: 1580px;
+  margin: 0 auto;
+}
+
+header {
+  height: 180px;  
+  padding-top: 40px;
+  margin: 20px auto;
+  
+}
+
+header > div {
+  width: 1580px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 auto;
+}
+	
+header > div > .logo_box{	
+  align-items: center;
+  
+  /*
+  position: relative;
+  right: 450px;
+  */
+}
+
+.logo_box > a > img {
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+
+div.nav-box {
+  width: 900px;
+  height: 90px;	
+}
+
+header nav.main_nav{
+  display: flex;
+  position: absolute;
+  align-items: center;
+  width: 600px;
+  height: 50px;
+  margin: 0 300px 20px 60px;
+}
+
+header nav div.underline {
+  position: absolute;
+  left: 32px;
+  bottom: -2px;
+  width: 15%;
+  height: 3px;
+  background: #ee82ee;
+  transition: all .3s ease-in-out;
+}
+
+nav a:nth-child(1).is-current ~ .underline {
+  left: calc(0% + 32px);
+}
+nav a:nth-child(2).is-current ~ .underline {
+  left: calc(25% + 32px);
+}
+nav a:nth-child(3).is-current ~ .underline {
+  left: calc(50% + 32px);
+}
+nav a:nth-child(4).is-current ~ .underline {
+  left: calc(75% + 32px);
+}
+
+nav a:nth-child(1):hover ~ .underline {
+  left: calc(0% + 32px);
+}
+nav a:nth-child(2):hover ~ .underline {
+  left: calc(25% + 32px);
+}
+nav a:nth-child(3):hover ~ .underline {
+  left: calc(50% + 32px);
+}
+nav a:nth-child(4):hover ~ .underline {
+  left: calc(75% + 32px);
+}
+
+header nav.main_nav > a{
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  width: 25%;
+  transition: 0.6s;
+  transition-timing-function: ease-in-out;
+}
+
+header nav.main_nav > a:hover{
+  transition: 0.4s;
+  color:#ee82ee;
+  transition-timing-function: ease-in-out;
+}
+
+/* 로그인 박스 */
+header .login_box{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 120px;
+  width: 200px;
+  height: 90px;
+  user-select: none;
+}
+
+/* dropdown css 시작 */
+.dropdown {
+  width: 100px;
+}
+
+/* 드롭다운 레이아웃 */
+#dropdown-login {
+  display: none;
+  
+  /*
+  position: absolute;
+  top: 25px;
+  left: -73px;
+  */
+  margin-top: 10px;
+  
+  width: 250px;
+  min-width: 160px;
+  height: 290px;
+
+  background-color: white;
+  
+  border: 1px solid #ee82ee;
+  border-radius: 10px;
+  
+  position: absolute;
+  z-index: 50;
+}
+
+#login-form{
+  padding: 15px;
+  align-items: center;
+}
+
+#login-form > p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* 첫 번째 언더라인 */
+.loginline {
+  width: 100%;
+  height: 2px;
+  background: #ee82ee;
+  
+  margin-bottom: 15px;	
+}
+
+/* 두 번째 언더라인 */
+.loginline.last {
+  margin-top: 10px;	
+}
+
+#login-div {
+  display: none;
+  background-color: #fff;
+  margin: 20px;
+  flex-direction: row;
+  border: 1px solid #fff;
+  border-radius: 15px;
+}
+
+#input-div > input {
+  width: 100%;
+  height: 25px;
+  margin-bottom: 5px;
+  border: 1px solid #ee82ee;
+  border-radius: 2px;
+  
+  text-indent: 12px;
+}
+
+
+#input-div > input:focus {
+  outline: none;
+}
+
+#forgotInfo {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;	
+}
+
+#forgotInfo > a {
+  font-weight: bold;
+  font-size: 12px;
+  color: #ee82ee;
+}
+
+/* 펫 로그인 레이아웃 */
+.petlogo-box {
+  text-align: center;
+}
+
+.petlogo-box > img {
+  width: 40px;
+  height: 40px;
+  
+  border: 2px solid #ee82ee;
+  
+  padding: 5px;	
+}
+
+/* 로그인 버튼 */
+.dropdown_botton{
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  background-color: #ee82ee;
+  width: 216px;
+  height: 45px;
+  border: 1px solid #ee82ee;
+  border-radius: 10px;
+  margin-left: 16px;
+  cursor:pointer;
+}
+
+
+/* 로그인 시 이미지 레이아웃 */
+.user {
+  width: 400px;
+  margin-left: 80px;
+  
+  text-align: right;
+  
+  position: relative;
+  top: -15px;
+}
+
+/* 포인트 박스 */
+div.points_box {
+  font-size: 18px;	
+  font-weight: bold;
+  position: relative;
+  top: 36px;
+  right: 135px;	
+}
+
+div.points_box > i {
+  margin-right: 5px;
+  position:relative;	
+}
+
+.dropdown img {
+  width: 40px;
+  height: 40px;
+  
+  border-radius: 20px;
+  
+  cursor: pointer;  	
+}
+
+/* 탑 프로필 이미지 레이아웃 */
+.top_profile_img {
+  margin-left: 20px;
+}
+
+/* 드롭다운 */
+.dropdown-user {
+  display: none;
+  
+  margin-top: 10px;
+  
+  width: 200px;
+  min-width: 160px;
+
+  background-color: white;
+  
+  border: 1px solid #ee82ee;
+  border-radius: 10px;
+  
+  position: absolute;
+  z-index: 50;
+}
+
+.dropdown-user > ul {
+  list-style: none;	
+}
+
+.dropdown-user > ul > li {
+  margin: 10px 10px;
+  height: 30px;
+  
+  font-weight: bold;
+  
+  text-align: left;
+  text-indent: 12px;
+  
+  padding-top: 6px;
+  
+  cursor: pointer;
+}
+
+.dropdown-user > ul > li.underline {
+  margin: 0;
+  	
+  width: 100%;
+  height: 1px;
+  
+  padding: 0;
+  
+  background: #ee82ee;
+}
+
+.dropdown-user > ul > li:last-child {
+  display: flex;
+}
+
+ul > li img.top_logout_img {
+  width: 20px;
+  height: 20px;
+  
+  position: relative;
+  left: 80px;	
+}
+
+.dropdown-user > ul > li:hover {
+  background-color: #f5f5f5;
+}
+
+/* dropdown css 끝 */
+
+header .login_box > .dropdown > span.loginForm, header .login_box > a {
+  display: block;
+  
+  width: 75px;
+  height: 45px;
+  
+  line-height: 45px;
+  text-align: center;
+  
+  font-size: 16px;
+  font-weight: 600;
+  
+  color: #555;
+  
+  border-radius: 8px;
+  background-color: #fff;
+  
+  cursor: pointer;
+  
+  /*
+  transition: 0.5s;
+  transition-timing-function: ease-in-out;
+  */
+}
+
+header .login_box > a {
+  width: 95px;
+  color: white;
+  background-color: #ee82ee;
+  border-radius: 8px;
+}
+
+header .login_box > a > span{
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+header .login_box > .dropdown > span.loginForm:hover{
+  color:#ee82ee;
+  transition: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+/* header끝 */
+
+/* 여기부터 footer */
+.footer_container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 280px;
+  width: 100%;
+  margin-top: 80px;
+  padding: 0 100px;
+  border-top: 2px solid #ddd;
+}
+
+.footer_box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  
+}
+
+.div_terms{
+  margin-bottom: 10px;
+}
+
+.btn_terms{
+  cursor: pointer;
+  font-size: 16px;
+  color: #444;
+}
+
+
+.div_cpy_info{
+  height: 100px;
+  line-height: 30px;
+}
+
+.div_cpy_info p{
+  font-size: 16px;
+  color: #444;
+}
+
+.footer_image{
+  width: 200px;
+  text-align: right;
+}
+
+.footer_image img{
+  width: 150px;
+  filter: grayscale(100%);
+}
+
+.footer_image .sns_box{
+  display: flex;
+  justify-content: first baseline;
+}
+
+.sns_box .sns > img{
+  width: 30px;
+  height: 30px;
+  margin: 0 10px 0 10px;
+  cursor: pointer;
+}
+
+
+
+/* 탑버튼 */
+.top_btn{
+  width: 75px;
+  height: 70px;
+  float: right;
+  position: fixed;
+  right: 80px;
+  bottom: 110px;
+  cursor: pointer;
+  filter:  hue-rotate(320deg);
+}
+
+/* 스크롤 이동 시 header 이동 */
+.header-move {
+  position: fixed;
+  top: 0;
+  margin-top: 0;
+  
+  width: 100%;
+  height: 95px;
+  
+  background: #f5f5f5;
+  border-bottom: 2px solid #ddd;
+  
+  z-index: 50;
+}
+
+.headerDiv-move {
+  margin-top: -105px;
+}
+
+/*  챗봇 chatbot */
+/* #chatHeader {padding: 10px 15px; border-bottom: 1px solid #95a6b4;}
+
+#btnClose {border: none; background: none; float: right;}  
+
+#message {width: 440px;}
+
+#btnSubmit {float: right; background:#eeeeee; height: 28px; padding-right:0;}
+
+.msgBox  span {padding:3px 5px; word-break:break-all; display:block; 
+                      max-width:300px; margin-bottom: 10px; border-radius: 10px;}
+                      
+.msgBox.send  span {background:#fef01b; float:right; }
+
+
+.msgBox.receive  span {background:#ffffff; float:left; } */
+
+.chat_bot{
+	width:80px;
+	height: 75px;
+	float: right;
+	position: fixed;
+	right: 80px;
+	bottom: 190px;
+	cursor: pointer;
+}
+.chatbot_box{
+	display: none;
+	float: right;
+	position: fixed;
+	right:180px;
+	bottom: 190px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+	border-radius: 10px;
+}
+
+.chat_head{
+	width: 400px;
+	height: 60px;
+	background-color: #e8e8e8;
+	line-height: 60px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+.chat_title{
+	font-size: 20px;
+	color: #777;
+	font-weight: 600;
+	padding-left: 10px;
+}
+.close_btn{
+	margin-left: 200px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.chatting_box{
+	width: 400px;
+	height: 500px;
+	background-color: #ffb7ff;
+	padding: 15px 15px; 
+	overflow-y: auto;
+}
+.chat_form{
+	line-height: 0;
+	font-size: 0;
+}
+.input_message{
+	width: 340px;
+	height: 50px;
+	padding: 10px;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	border-bottom-left-radius: 10px;
+	
+}
+.send_text{
+	width: 60px;
+	height: 50px;
+	font-size: 18px;
+	font-weight: 600;
+	background-color: #e8e8e8;
+	border: none;
+	border-bottom-right-radius: 10px;
+	cursor: pointer
+}
+
+.msgBox  span {
+	padding:3px 5px;
+	word-break:break-all; 
+	display:block; 
+    max-width:300px; 
+    border-radius: 10px;
+}
+                      
+.msgBox.send  span {
+	background:#fef01b; 
+	float:right; 
+	border-radius: 5px;
+}
+
+#resultBox{
+	margin: 5px 0;
+}
+
+.result{
+	border-radius: 5px;
+	background: #fff;
+	padding: 10px 5px;
+	width: 300px;
+	height: 100%;
+	word-break: break-all;
+	display: block;
+	
+}
+
+#resultBox img{
+	width: 50px;
+	height: 50px;
+}
+#resultBox .map{
+	width: 300px;
+	height: 200px;
+}
+
+/* 스크롤바 커스텀 */
+.chatting_box::-webkit-scrollbar{
+	width: 6px;
+}
+
+.chatting_box::-webkit-scrollbar-thumb {
+    height: 20%; 
+    background: #f196f1; 
+    border-radius: 10px;
+}
+
+.chatting_box::-webkit-scrollbar-track {
+    background: #d9d9d9;
+}

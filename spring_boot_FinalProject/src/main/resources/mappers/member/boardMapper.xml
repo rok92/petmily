@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring_boot.FinalProject.dao.IBoardDAO">
+  	
+  	<!-- 공지사항 확인(조건) -->
+  	<select id="selectNotice" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.BoardVO">
+  		SELECT board.*, user.userName, COUNT(*) OVER() AS rowCnt
+  		  FROM (SELECT * FROM board WHERE category = 1) AS board
+  		  JOIN user ON board.userId = user.userId
+  		 WHERE board.title LIKE CONCAT('%',#{title},'%') AND board.contents LIKE CONCAT('%',#{contents},'%')
+  		 ORDER BY board.boardId DESC
+  		 LIMIT 10 OFFSET #{pageNum}
+  	</select>
+  	
+  	<!-- 공지사항 확인(전체) -->
+  	<select id="selectNoticeOR" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.BoardVO">
+  		SELECT board.*, user.userName, COUNT(*) OVER() AS rowCnt
+  		  FROM (SELECT * FROM board WHERE category = 1) AS board
+  		  JOIN user ON board.userId = user.userId
+  		 WHERE board.title LIKE CONCAT('%',#{title},'%') OR board.contents LIKE CONCAT('%',#{contents},'%')
+  		 ORDER BY board.boardId DESC
+  		 LIMIT 10 OFFSET #{pageNum}
+  	</select>
+
+  	<!-- 공지사항 세부 내용 조회 -->
+  	<select id="noticeDetailView" parameterType="String" resultType="com.spring_boot.FinalProject.model.BoardVO">
+  	<![CDATA[
+		SELECT board.*, user.userName,
+		       (SELECT title FROM board WHERE boardId < #{boardId} AND category = 1 ORDER BY boardId DESC LIMIT 1) AS prevTitle,
+		       (SELECT title FROM board WHERE boardId > #{boardId} AND category = 1 ORDER BY boardId LIMIT 1) AS nextTitle
+		  FROM board
+		  JOIN user ON board.userId = user.userId
+		 WHERE boardId = #{boardId}
+		   AND category = 1
+	  ORDER BY board.boardId DESC
+	]]>   		
+  	</select>
+  	
+  	<!-- 문의하기 작성 -->
+  	<insert id="insertContact" parameterType="com.spring_boot.FinalProject.model.BoardVO">
+  		INSERT into board
+  		(userId, title, contents, chkEmail, chkFile, category, chkYN)
+  		VALUES(#{userId}, #{title}, #{contents}, #{chkEmail}, #{chkFile}, 2, 0)
+  	</insert>
+
+  	<!-- 문의내역 조회 -->
+  	<select id="selectContact" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.BoardVO">
+		SELECT *, COUNT(*) OVER() AS rowCnt 
+		  FROM board
+		 WHERE userId = #{userId}
+		   AND category = '2'
+		 ORDER BY boardId DESC
+		 LIMIT 10 OFFSET #{pageNum}
+  	</select>
+  	
+    <!-- 작성자 Email 확인 -->
+  	<select id="contactEmail" parameterType="String" resultType="String">
+  		SELECT u.userEmail 
+  		  FROM user u
+  		  JOIN board b ON b.userId = u.userId
+  		 WHERE boardId = #{board}
+  	</select>
+  	
+  	<!-- 문의내역 세부 내용 조회 -->
+  	<select id="contactDetailView" parameterType="String" resultType="com.spring_boot.FinalProject.model.BoardVO">
+  	<![CDATA[
+		SELECT board.*, user.userName,
+		       (SELECT title FROM board WHERE boardId < #{boardId} AND category = 2 ORDER BY boardId DESC LIMIT 1) AS prevTitle,
+		       (SELECT title FROM board WHERE boardId > #{boardId} AND category = 2 ORDER BY boardId LIMIT 1) AS nextTitle
+		  FROM board
+		  JOIN user ON board.userId = user.userId
+		 WHERE boardId = #{boardId}
+		   AND category = 2
+	  ORDER BY board.boardId DESC
+	]]>   		
+  	</select>
+  	
+  	<!-- 문의내역 저장 -->
+	<update id="updateContact" parameterType="hashmap">
+		UPDATE board
+		   SET title = #{title}, 
+		   	   contents = #{contents},
+		   	   chkFile = #{chkFile},
+		   	   modifyDate = CURRENT_TIMESTAMP 
+		 WHERE boardId=#{boardId} 	   
+	</update>
+  	
+  	  <!-- 등록업체  -->
+  	<select id="selectRegistration" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.InsertHotelVO">
+  		SELECT *, COUNT(*) OVER() AS rowCnt
+		FROM registration
+  		WHERE name LIKE CONCAT('%',#{title},'%')
+  		ORDER BY regId DESC
+  		LIMIT 10 OFFSET #{pageNum}
+  	</select>
+  	
+  	<!-- 등록업체 확인페이지  -->
+  	<select id="detailRegistration" parameterType="int" resultType="com.spring_boot.FinalProject.model.InsertHotelVO">
+  		SELECT * FROM registration WHERE regId = #{regId}
+  	</select>
+  	
+  	<!-- 업체 승인 -->
+  	<update id="approveHotel" parameterType="HashMap">
+  		UPDATE registration SET approve = #{approve} WHERE name = #{name}
+  	</update>
+  	
+  	<!-- 관리자 - 공지사항 수정 -->
+	<update id="updateAdminNotice" parameterType="hashmap">
+		UPDATE board
+		   SET title = #{title}, 
+		   	   contents = #{contents},
+		   	   modifyDate = CURRENT_TIMESTAMP
+		 WHERE boardId=#{boardId} 	   
+	</update>
+
+  	<!-- 관리자 - 공지사항 추가 -->
+	<insert id="insertAdminNotice" parameterType="hashmap">
+	  	INSERT into board
+	  		  (userId, title, contents, category)
+	  	VALUES(#{userId}, #{title}, #{contents}, 1)	   
+	</insert>
+	
+  	<!-- 관리자 - 공지사항 삭제 -->
+	<delete id="deleteAdminNotice" parameterType="hashmap">
+	  	DELETE FROM board
+	  	 WHERE boardId IN
+	  	 <foreach collection="boardIds" item="boardId" open="(" close=")" separator=",">#{boardId}</foreach> 
+	</delete>
+	
+  	<!-- 관리자 - 사용자관리 조회 -->
+	<select id="selectAdminUser" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.UserVO">
+	  	SELECT *, COUNT(*) OVER() AS rowCnt
+	  	  FROM user
+	  	 WHERE userId LIKE CONCAT('%',#{userId},'%')
+	  	    OR userName LIKE CONCAT('%',#{userName},'%')
+	  	    OR DATE_FORMAT(activeDate, '%Y-%m-%d') LIKE DATE_FORMAT(REPLACE(#{activeDate}, '%', activeDate), '%Y-%m-%d')
+	  	 ORDER BY activeDate DESC, userName ASC
+	  	 LIMIT 10 OFFSET #{pageNum}
+	</select>
+	
+  	<!-- 관리자 - 문의내역 조회 -->
+	<select id="selectAdminContact" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.BoardVO">
+		SELECT *, COUNT(*) OVER() AS rowCnt  
+		  FROM user u
+		  JOIN (SELECT * FROM board WHERE category = '2' AND chkYN LIKE CONCAT('%',#{chkYN},'%')) AS b ON u.userId = b.userId
+		 WHERE u.userId LIKE CONCAT('%',#{userId},'%')
+			OR u.userName LIKE CONCAT('%',#{userName},'%')
+			OR DATE_FORMAT(b.modifyDate, '%Y-%m-%d') LIKE DATE_FORMAT(REPLACE(#{modifyDate}, '%', b.modifyDate), '%Y-%m-%d')
+		 ORDER BY b.modifyDate DESC, userName ASC
+		 LIMIT 10 OFFSET #{pageNum}
+	</select>
+	
+	<!-- 관리자 - 문의내역 답변 조회 -->
+	<select id="selectAdminComment" parameterType="String" resultType="com.spring_boot.FinalProject.model.CommentVO">
+		SELECT *  
+		  FROM comment c
+		  JOIN user u ON c.userId = u.userId
+		 WHERE boardId = #{boardId}
+	</select>
+		
+	<!-- 관리자 - 답변 반영 -->
+	<update id="updateCheckYN" parameterType="String">
+		UPDATE board
+		   SET chkYN = 1
+		 WHERE boardId = #{boardId} 	   
+	</update>
+	
+  	<!-- 관리자 - 문의내역 답변 저장 -->
+	<insert id="insertAdminContact" parameterType="hashmap">
+	  	INSERT into comment
+	  		  (boardId, userId, comment)
+	  	VALUES(#{boardId}, #{userId}, #{comment})	   
+	</insert>
+	
+	<!-- 관리자 - 문의내역 답변 수정 -->
+	<update id="updateAdminContact" parameterType="hashmap">
+		UPDATE comment
+		   SET comment = #{comment}, writeDate = CURRENT_TIMESTAMP
+		 WHERE boardId = #{boardId}
+		   AND userId = #{userId} 	   
+	</update>
+	
+  	<!-- 관리자 - 결제내역 조회 -->
+	<select id="selectAdminPay" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.OrderVO">
+		SELECT i.*, u.userName, (SELECT stayName FROM stay WHERE stayNo = i.stayNo) AS stayName,
+		       COUNT(*) OVER() AS rowCnt 
+		  FROM (SELECT * FROM orderinfo WHERE stayNo IS NOT NULL) i
+		  JOIN user u ON u.userId = i.userId
+		 WHERE u.userId LIKE CONCAT('%',#{userId},'%')
+		    OR u.userName LIKE CONCAT('%',#{userName},'%')
+		    OR DATE_FORMAT(i.payDate, '%Y-%m-%d') LIKE DATE_FORMAT(REPLACE(#{payDate}, '%', i.payDate), '%Y-%m-%d')
+		 ORDER BY i.payDate DESC, u.userName ASC
+		 LIMIT 10 OFFSET #{pageNum}
+	</select>
+	
+  	<!-- 관리자 - 결제내역 삭제 -->
+	<delete id="deleteAdminPay" parameterType="hashmap">
+	  	DELETE FROM orderinfo
+	  	 WHERE ordNo IN
+	  	 <foreach collection="ordNos" item="ordNo" open="(" close=")" separator=",">#{ordNo}</foreach> 
+	</delete>
+	
+  	<!-- 관리자 - 결제내역 세부 내용 조회 -->
+  	<select id="payDetailView" parameterType="String" resultType="com.spring_boot.FinalProject.model.OrderVO">
+		SELECT *, (SELECT stayName FROM stay WHERE stayNo = i.stayNo) AS stayName,
+		  	   (SELECT stayAddress FROM stay WHERE stayNo = i.stayNo) AS address
+		  FROM orderinfo i
+		  JOIN orderproduct p ON p.userId = i.userId
+		  JOIN user u ON u.userId = p.userId
+		 WHERE i.ordNo = #{ordNo}
+		 ORDER BY p.ordPrdId DESC
+         LIMIT 1		
+  	</select>
+	
+	<!-- 관리자 - 탈퇴회원 조회 -->
+	<select id="selectOutUser" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.OutuserVO">
+		SELECT *, COUNT(*) OVER() AS rowCnt  
+		  FROM outuser
+		 WHERE userId LIKE CONCAT('%',#{userId},'%')
+			OR userName LIKE CONCAT('%',#{userName},'%')
+			OR DATE_FORMAT(levDate, '%Y-%m-%d') LIKE DATE_FORMAT(REPLACE(#{levDate}, '%', levDate), '%Y-%m-%d')
+		 ORDER BY levDate DESC, userName ASC
+		 LIMIT 10 OFFSET #{pageNum}
+	</select>
+	
+  	<!-- 관리자 - 탈퇴회원 삭제 -->
+	<delete id="deleteAdminOut" parameterType="hashmap">
+	  	DELETE FROM outuser
+	  	 WHERE levId IN
+	  	 <foreach collection="levIds" item="levId" open="(" close=")" separator=",">#{levId}</foreach> 
+	</delete>
+	
+  	<!-- 관리자 - 서비스 조회(전체) -->
+	<select id="selectServiceOR" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.ServiceVO">
+	  	SELECT *, COUNT(*) OVER() AS rowCnt
+	  	  FROM service
+	  	 WHERE serviceSort LIKE CONCAT('%',#{serviceSort},'%')
+	  	    OR serviceName LIKE CONCAT('%',#{serviceName},'%')
+	  	 ORDER BY serviceSort ASC, serviceName ASC 
+	  	 LIMIT 10 OFFSET #{pageNum}
+	</select>
+  	
+  	<!-- 관리자 - 서비스 조회(조건) -->
+	<select id="selectService" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.ServiceVO">
+	  	SELECT *, COUNT(*) OVER() AS rowCnt
+	  	  FROM service
+	  	 WHERE serviceSort LIKE CONCAT('%',#{serviceSort},'%')
+	  	   AND serviceName LIKE CONCAT('%',#{serviceName},'%')
+	  	 ORDER BY serviceSort ASC, serviceName ASC 
+	  	 LIMIT 10 OFFSET #{pageNum}
+	</select>
+	
+  	<!-- 관리자 - 서비스 입력 -->
+	<insert id="insertAdminService" parameterType="hashmap">
+	  	INSERT into service
+	  		  (serviceSort, serviceName)
+	  	VALUES(#{serviceSort}, #{serviceName})	   
+	</insert>
+	
+  	<!-- 관리자 - 공지사항 삭제 -->
+	<delete id="deleteAdminService" parameterType="hashmap">
+	  	DELETE FROM service
+	  	 WHERE serviceId IN
+	  	 <foreach collection="serviceIds" item="serviceId" open="(" close=")" separator=",">#{serviceId}</foreach> 
+	</delete>
+	
+  	<!-- 관리자 - 서비스 상세조회 -->
+  	<select id="serviceDetailView" parameterType="String" resultType="com.spring_boot.FinalProject.model.ServiceVO">
+		SELECT *
+		  FROM service
+		 WHERE serviceId = #{serviceId}   		
+  	</select>
+  	
+  	<!-- 관리자 - 서비스 세부화면 수정 -->
+	<update id="updateAdminService" parameterType="hashmap">
+		UPDATE service
+		   SET serviceSort = #{serviceSort}, 
+		   	   serviceName = #{serviceName}
+		 WHERE serviceId = #{serviceId} 	   
+	</update>
+	
+  	<!-- 관리자 - 시설 조회(전체) -->
+	<select id="selectFacilityOR" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.FacilityVO">
+	  	SELECT *, COUNT(*) OVER() AS rowCnt
+	  	  FROM facility
+	  	 WHERE facilitySort LIKE CONCAT('%',#{facilitySort},'%')
+	  	    OR facilityName LIKE CONCAT('%',#{facilityName},'%')
+	  	 ORDER BY facilitySort ASC, facilityName ASC 
+	  	 LIMIT 10 OFFSET #{pageNum}
+	</select>
+  	
+  	<!-- 관리자 - 시설 조회(조건) -->
+	<select id="selectFacility" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.FacilityVO">
+	  	SELECT *, COUNT(*) OVER() AS rowCnt
+	  	  FROM facility
+	  	 WHERE facilitySort LIKE CONCAT('%',#{facilitySort},'%')
+	  	   AND facilityName LIKE CONCAT('%',#{facilityName},'%')
+	  	 ORDER BY facilitySort ASC, facilityName ASC 
+	  	 LIMIT 10 OFFSET #{pageNum}
+	</select>
+	
+  	<!-- 관리자 - 시설 입력 -->
+	<insert id="insertAdminFacility" parameterType="hashmap">
+	  	INSERT into facility
+	  		  (facilitySort, facilityName)
+	  	VALUES(#{facilitySort}, #{facilityName})	   
+	</insert>
+	
+  	<!-- 관리자 - 시설 삭제 -->
+	<delete id="deleteAdminFacility" parameterType="hashmap">
+	  	DELETE FROM facility
+	  	 WHERE facilityId IN
+	  	 <foreach collection="facilityIds" item="facilityId" open="(" close=")" separator=",">#{facilityId}</foreach> 
+	</delete>
+	
+  	<!-- 관리자 - 시설 상세조회 -->
+  	<select id="facilityDetailView" parameterType="String" resultType="com.spring_boot.FinalProject.model.FacilityVO">
+		SELECT *
+		  FROM facility
+		 WHERE facilityId = #{facilityId}   		
+  	</select>
+  	
+  	<!-- 관리자 - 시설 세부화면 수정 -->
+	<update id="updateAdminFacility" parameterType="hashmap">
+		UPDATE facility
+		   SET facilitySort = #{facilitySort}, 
+		   	   facilityName = #{facilityName}
+		 WHERE facilityId = #{facilityId} 	   
+	</update>
+	
+  	<!-- 관리자 - 펫등록증 조회(전체) -->
+	<select id="selectPetOR" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.PetVO">
+	  	SELECT *, COUNT(*) OVER() AS rowCnt
+	  	  FROM pet
+	  	  JOIN user ON user.userId = pet.userId
+	  	 WHERE user.userId LIKE CONCAT('%',#{userId},'%')
+	  	    OR user.userName LIKE CONCAT('%',#{userName},'%')
+	  	 ORDER BY pet.startDate DESC, user.userName ASC 
+	  	 LIMIT 10 OFFSET #{pageNum}
+	</select>
+  	
+  	<!-- 관리자 - 펫등록증 조회(조건) -->
+	<select id="selectPet" parameterType="hashmap" resultType="com.spring_boot.FinalProject.model.PetVO">
+	  	SELECT *, COUNT(*) OVER() AS rowCnt
+	  	  FROM pet
+	  	  JOIN user ON user.userId = pet.userId
+	  	 WHERE user.userId LIKE CONCAT('%',#{userId},'%')
+	  	   AND user.userName LIKE CONCAT('%',#{userName},'%')
+	  	 ORDER BY pet.startDate DESC, user.userName ASC 
+	  	 LIMIT 10 OFFSET #{pageNum}
+	</select>
+	
+  	<!-- 관리자 - 펫등록증 삭제 -->
+	<delete id="deleteAdminPet" parameterType="hashmap">
+	  	DELETE FROM pet
+	  	 WHERE petId IN
+	  	 <foreach collection="petIds" item="petId" open="(" close=")" separator=",">#{petId}</foreach> 
+	</delete>
+	
+  	<!-- 관리자 - 펫등록증 연장 -->
+	<update id="extendAdminPet" parameterType="String">
+		UPDATE pet
+		   SET startDate = CURRENT_TIMESTAMP, 
+		   	   endDate = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 YEAR)
+		 WHERE petId = #{petId} 	   
+	</update>	 
+	
+	<!-- 관리자 - 등록업체 삭제  -->
+	<delete id="deleteAdminReg" parameterType="hashmap">
+		DELETE FROM registration
+		WHERE regId IN
+	  	 <foreach collection="regIds" item="regId" open="(" close=")" separator=",">#{regId}</foreach> 
+	</delete>
+	
+</mapper>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring_boot.FinalProject.dao.IUserDAO">
+  	
+  	<!-- 로그인 확인 -->
+  	<select id="selectUser" parameterType="String" resultType="com.spring_boot.FinalProject.model.UserVO">
+  		SELECT * FROM user WHERE userId = #{userId}
+  	</select>
+  	
+  	<!-- 로그인 확인(펫코드) -->
+  	<select id="selectUserPetCode" parameterType="String" resultType="com.spring_boot.FinalProject.model.UserVO">
+  		SELECT user.* 
+		  FROM pet
+		  JOIN user ON pet.userId = user.userId
+		 WHERE pet.petCode = #{petCode}
+  	</select>
+  	
+  	<!-- ID 찾기 -->
+  	<select id="forgotId" parameterType="hashmap" resultType="String">
+  		SELECT userId 
+		  FROM user
+		 WHERE userName = #{userName}
+		   AND userEmail = #{userEmail}
+  	</select>
+  	
+  	<!-- PW 찾기 -->
+    <update id="forgotPw" parameterType="String">
+    	UPDATE user 
+    	   SET userPw = #{userPw}
+    	 WHERE userId = #{userId}
+    	   AND userEmail = #{userEmail}
+    </update>
+  	
+  	<!-- 로그인 후 접속일자 수정 -->
+    <update id="updateActiveDate" parameterType="String">
+    	UPDATE user 
+    	   SET activeDate = CURRENT_TIMESTAMP
+    	 WHERE userId = #{userId}
+    </update>
+    
+  	<!-- 로그인 후 포인트 증감 -->
+    <update id="updatePoints" parameterType="String">
+    <![CDATA[
+    	UPDATE user
+    	   SET points = points + 100
+    	 WHERE userId = #{userId}
+    	   AND CAST(activeDate AS DATE) <= DATE_ADD(CURRENT_DATE(), INTERVAL -1 DAY)
+    ]]>	  
+    </update>
+        
+  	<!-- 회원 가입 -->
+  	<insert id="insertUser" parameterType="com.spring_boot.FinalProject.model.UserVO">
+  		INSERT into user
+  		(userId, userPw, userName, userEmail)
+  		VALUES(#{userId}, #{userPw}, #{userName}, #{userEmail})
+  	</insert>
+  	
+  	<!-- 회원 탈퇴 -->
+  	<delete id="deleteUser" parameterType="String">
+		DELETE FROM user WHERE userId = #{userId} 
+  	</delete>
+  	
+  	<!-- 탈퇴 후 내역관리 -->
+  	<insert id="insertOutUser" parameterType="hashmap">
+  		INSERT into outuser
+  		(userId, userName, userAuthor)
+  		VALUES(#{userId}, #{userName}, #{userAuthor}) 
+  	</insert>
+
+  	<!-- ID 체크 -->
+  	<select id="chkId" parameterType="String" resultType="String">
+  		SELECT userId FROM user WHERE userId = #{userId}
+  	</select>
+  	
+  	<!-- 유저정보 찾기(PW 분실용) -->
+  	<select id="chkUser" parameterType="hashmap" resultType="String">
+  		SELECT userName 
+  		  FROM user 
+  		 WHERE userId = #{userId}
+  		   AND userEmail = #{userEmail}
+  	</select>
+  	
+  	<!-- Email 체크 -->
+  	<select id="chkEmail" parameterType="String" resultType="String">
+  		SELECT userEmail FROM user WHERE userEmail = #{userEmail}
+  	</select>
+  	
+  	<!-- Email 확인 -->
+  	<select id="confirmEmail" parameterType="String" resultType="String">
+  		SELECT userEmail FROM user WHERE userId = #{userId}
+  	</select>
+  	
+	 <!-- 회원정보 수정 -->
+    <update id="memberUpdate" parameterType="String">
+        UPDATE user SET
+        <trim suffixOverrides=",">
+            <if test='updatePw != null  and !updatePw.equals("")'>
+                userPw=#{updatePw},
+            </if>
+            <if test='updateEmail != null  and !updateEmail.equals("")'>
+                userEmail=#{updateEmail},
+            </if>
+        </trim>
+        WHERE USERID=#{userId}
+    </update>
+    
+	<!-- 관리자-사용자 권한 수정 -->
+    <update id="updateAdminUser" parameterType="hashmap">
+        UPDATE user 
+           SET userAuthor = #{userAuthor}
+         WHERE userId = #{userId}
+    </update>
+    
+    <!-- 프로필 사진 변경 -->
+      <update id="updateUserImg" parameterType="String">
+        UPDATE user
+        SET USERIMG=#{imgName}
+        WHERE USERID = #{sid}
+    </update>
+    
+  	<!-- 펫 등록 -->
+  	<insert id="insertPet" parameterType="com.spring_boot.FinalProject.model.PetVO">
+  		INSERT into pet
+  		(userId, petImg, petName, petRace, petAge, petKind, petSize, comment, petCode, endDate)
+  		VALUES(#{userId}, #{petImg}, #{petName}, #{petRace}, #{petAge}, 
+  			   #{petKind}, #{petSize}, #{comment}, #{petCode}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 YEAR))
+  	</insert>
+  	
+  	<!-- 펫코드 확인 -->
+  	<select id="selectPetCode" parameterType="String" resultType="String">
+  		SELECT petCode
+		  FROM pet
+		 WHERE pet.petId = #{petId}
+  	</select>
+  	
+  	<!-- 펫 등록 확인 -->
+  	<select id="selectPet" parameterType="String" resultType="com.spring_boot.FinalProject.model.PetCardVO">
+  		SELECT *, user.userName userName 
+		  FROM pet
+		  JOIN user ON pet.userId = user.userId
+		 WHERE pet.petCode = #{petCode}
+  	</select>
+  	
+  	<!-- 펫 등록증 소유 여부 확인 -->
+   	<select id="selectPetUser" parameterType="String" resultType="String">
+  		SELECT userId FROM pet
+		 WHERE userId = #{userId}
+  	</select>
+  	
+  	<!-- 펫 수정 -->
+    <update id="updatePet" parameterType="com.spring_boot.FinalProject.model.PetVO">
+    	UPDATE pet 
+    	   SET petName = #{petName},
+    	   	   petRace = #{petRace},
+    	   	   petAge  = #{petAge},
+    	   	   petKind = #{petKind},
+    	   	   petSize = #{petSize},
+    	   	   comment = #{comment},
+    	   	   petImg  = #{petImg}
+    	 WHERE petId = #{petId}
+    </update>
+    
+  	<!-- 펫 삭제 -->
+  	<delete id="deletePet" parameterType="String">
+		DELETE FROM pet WHERE petId = #{petId} 
+  	</delete>
+  	
+  	<!-- 패스워드 체크 -->
+  	<select id="pwCheck" resultType="String">
+  		SELECT userPw FROM user WHERE userId = #{userId}
+  	</select>
+  	
+  	<!-- 관리자 - 사용자 펫 등록 여부 확인 -->
+   	<select id="selectAdminPetUser" parameterType="String" resultType="com.spring_boot.FinalProject.model.PetVO">
+  		SELECT * 
+  		  FROM pet
+		 WHERE userId = #{userId}
+  	</select>
+  	
+  	    <!-- 리뷰 등록 -->
+    <insert id="insertReview" parameterType="com.spring_boot.FinalProject.model.ReviewVO">
+        INSERT into review
+			(userId, stayNo, contents, createDate, modifyDate, point, ordNo)
+			VALUES (#{userId}, #{stayNo}, #{contents}, now(), now(), #{point}, #{ordNo})
+    </insert>
+    
+    <!--  찜하기 마이페이지  -->
+	<select id="selectLike" parameterType="string" resultType="com.spring_boot.FinalProject.model.LikeVO">
+		SELECT * FROM mylike WHERE userId = #{userId} ORDER BY likeId 
+	</select>
+	
+	<!--  찜 삭제하기 (특가) -->
+	<delete id="deleteLikeReg" parameterType="hashmap">
+		DELETE FROM mylike WHERE userId = #{userId} AND regId = #{regId} 
+	</delete>
+	
+	<!--  찜 삭제하기 (일반) -->
+	<delete id="deleteLikeStay" parameterType="hashmap">
+		DELETE FROM mylike WHERE userId = #{userId} AND stayNo = #{stayNo}
+	</delete>
+	
+	<!--  찜 (특가)  -->
+	<select id="selectChkRegId" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM mylike WHERE userId = #{userId} AND regId = #{id}
+	</select>
+	
+	<!--  찜 (일반) -->
+	<select id="selectChkStay" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM mylike WHERE userId = #{userId} AND stayNo = #{id}
+	</select>
+	
+	 <!-- 마이페이지에서 찜삭제하기 -->
+	 <delete id="deleteMyLike" parameterType="hashmap">
+	 	DELETE FROM mylike
+	 	WHERE likeId = #{likeId} AND userId = #{userId}
+	 </delete>
+	 
+	 <!-- 찜하트 유지(특가) -->
+	 <select id="retainHeartReg" parameterType="string" resultType="com.spring_boot.FinalProject.model.LikeVO">
+		SELECT regId FROM mylike
+		WHERE userId = #{userId} AND NOT regId IS NULL
+	 </select>
+  	
+	 <!-- 찜하트 유지(일반) -->
+	 <select id="retainHeartStay" parameterType="string" resultType="com.spring_boot.FinalProject.model.LikeVO">
+		SELECT stayNo FROM mylike
+		WHERE userId = #{userId}  AND NOT stayNo IS NULL
+	 </select>
+</mapper>

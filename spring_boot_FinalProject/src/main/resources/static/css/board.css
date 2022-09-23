@@ -1,0 +1,185 @@
+/* 게시판 공통 */
+
+/* a태그 레이아웃 */
+a.atxtUnderline {
+  color: #008000;
+}
+
+th {
+  background: #ee82ee;
+  color: #fff;
+  
+  text-align: center;
+  
+  padding: 15px 15px;
+  border: 1px solid #c6c9cc;
+}
+
+/* 제목레이아웃 */
+.pageTitle {
+  text-align: center;
+  
+  margin: 50px auto 30px auto;	
+}
+
+.pageTitle > div {
+  background-color: #fff;
+  border-radius: 20px;
+  
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  
+  display: inline-block;
+  
+  line-height: 60px;
+}
+
+.pageTitle > div > span {
+  margin: 0 22px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* 테이블 번호 크기 고정 */
+th.num, th.checkBox {
+  width: 90px;
+}
+
+th.id, th.name {
+  width: 120px;	
+}
+
+/* 테이블 체크박스 */
+th.checkBox > input {
+  width: 15px;
+  height: 15px;
+  
+  position: relative;
+  top: 3px;
+  left: 3px;
+  
+  cursor: pointer;	
+}
+
+/* 테이블 작성자, 작성일 크기 고정 */
+th.date {
+  width: 180px;
+}
+
+th.author, th.chkYN {
+  width: 120px;	
+}
+
+th.approve{
+	width: 100px;
+}
+
+td {
+  padding: 10px 15px;
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+
+/* 체크 박스 td */
+td > input.agree_subcheck {
+  position: relative;
+  top: 2px;
+  
+  width: 13px;
+  height: 13px;
+  
+  cursor: pointer;	
+}
+
+/* 페이징 레이아웃 */
+.paging-box {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.paging-box > ul {
+  list-style: none;
+}
+
+/* 간격 조정 */
+.paging-box > ul > li {
+  display: inline-block;
+  margin-left: 3px;
+}
+
+.paging-box > ul > li.prevPager {
+  margin-right: 10px;
+}
+
+.paging-box > ul > li.nextPager {
+  margin-left: 10px;
+}
+
+.paging-box > ul > li > div {
+  display: block;
+  position: relative;
+  padding: 7px 0 8px;
+  min-width: 30px;
+  border: 1px solid black;
+  font-size: 14px;
+  box-sizing: border-box;
+  
+  cursor: pointer;
+}
+
+.paging-box > ul > li > div:hover {
+  background-color: #636363;
+  color: #fff;
+}
+
+.paging-box > ul > li > div.active:focus {
+  background-color: #636363;
+  color: #fff;
+}
+
+.aSelected {
+  background-color: #636363;	
+}
+
+/* 관리자 테이블 버튼 레이아웃 */
+.btnAdmin {
+  font-size: 14px;
+  font-weight: bold;
+  
+  text-align: center;
+  
+  margin-left: 10px;
+  padding: 9px 15px;
+  
+  border-radius: 5px;
+  border: 0px;
+  
+  background: #ee82ee;
+  color: white;
+  
+  cursor: pointer;	
+}
+
+.btnAdmin:active {
+  background: white;
+  color: black;	
+}
+
+/* 삭제 버튼 */
+.del {
+  background: white;
+  color: black;  	
+}
+
+.del:active {
+  background: black;
+  color: white;	
+}
+
+/* 레이아웃 전체 크기 반영 */
+div.main-layout {
+  height: max-content;
+}
